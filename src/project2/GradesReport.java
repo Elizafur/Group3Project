@@ -12,35 +12,83 @@ public class GradesReport {
     GradeReader grade = new GradeReader();
     ArrayList<Student> studentList = grade.getGrades();
     
-    String[] name;
+    private String[] name;
     private ArrayList<Double> quiz;
     private ArrayList<Double> assignment;
     private ArrayList<Double> exam;
-    double project, attendance, quizAverage, assignmentAverage;
+    private double project, attendance, quizAverage, assignmentAverage;
     
-    //methods
-    public void reportGrades(String[] name, Schema s, boolean dropLowest)
+    //currently returns student info from reader ONLY
+    public int calculateFinalGrade(String[] name, boolean dropLowest)
     {
-        System.out.println ("Student Name // Q1 Q2 Q3 Q4 Q5 // L1 L2 L3 L4 L5 // E1 E2 PROJ ATT ");
-        for (int i = 0; i < studentList.size(); i++) 
+       
+    }
+    
+//     System.out.println ("Student Name // Q1 Q2 Q3 Q4 Q5 // L1 L2 L3 L4 L5 // E1 E2 PROJ ATT ");
+//        for (int i = 0; i < studentList.size(); i++) 
+//        {
+//            name = studentList.get(i).getName();
+//            System.out.println(name[0] + " " + name[1]);
+//            quiz = studentList.get(i).getQuiz();
+//            System.out.print("Quizzes: " + quiz.get(0) + ", " + quiz.get(1) + ", " + quiz.get(2) + ", " + quiz.get(3) + ", " + quiz.get(4));
+//            assignment = studentList.get(i).getAssignment();
+//            System.out.print("\nAssignment: " + assignment.get(0) + ", " + assignment.get(1) + ", " + assignment.get(2) + ", " + assignment.get(3) + ", " + assignment.get(4));
+//            exam = studentList.get(i).getExam();
+//            System.out.print("\nExams: " + exam.get(0) + ", " + exam.get(1));
+//            project = studentList.get(i).getProject();
+//            System.out.println("\nProject: " + project);
+//            attendance = studentList.get(i).getAttendance();
+//            System.out.println("\nProject: " + attendance);   
+//        }
+        
+        public void setQuizAverageNoDrop ()
         {
-            name = studentList.get(i).getName();
-            System.out.println(name[0] + " " + name[1]);
-            quiz = studentList.get(i).getQuiz();
-            System.out.print("Quizzes: " + quiz.get(0) + ", " + quiz.get(1) + ", " + quiz.get(2) + ", " + quiz.get(3) + ", " + quiz.get(4));
-            assignment = studentList.get(i).getAssignment();
-            System.out.print("\nAssignment: " + assignment.get(0) + ", " + assignment.get(1) + ", " + assignment.get(2) + ", " + assignment.get(3) + ", " + assignment.get(4));
-            exam = studentList.get(i).getExam();
-            System.out.print("\nExams: " + exam.get(0) + ", " + exam.get(1));
-            project = studentList.get(i).getProject();
-            System.out.println("\nProject: " + project);
-            attendance = studentList.get(i).getAttendance();
-            System.out.println("\nProject: " + attendance);
-            
-            
+            double value;
+            value = (quiz.get(0) + quiz.get(1) + quiz.get(2) + quiz.get(3) + quiz.get(4));
+            quizAverage = (value/5.0);
+        }
+        
+        public double getQuizAverageNoDrop ()
+        {
+            return quizAverage;
+        }
+        
+        public void setQuizAverageDrop ()
+        {
+            double value;
+            value = (quiz.get(0) + quiz.get(1) + quiz.get(2) + quiz.get(3));
+            quizAverage = (value/4.0);
+        }
+        
+        public double getQuizAverageDrop ()
+        {
+            return quizAverage;
+        }
+        
+        public void setAssignAverageNoDrop ()
+        {
+            double value;
+            value = (assignment.get(0) + assignment.get(1) + assignment.get(2) + assignment.get(3) + assignment.get(4));
+            assignmentAverage = (value/5.0);
+        }
+        
+        public double getAssignAverageNoDrop ()
+        {
+            return assignmentAverage;
+        }
+        
+        public void setAssignAverageDrop ()
+        {
+            double value;
+            value = (assignment.get(0) + assignment.get(1) + assignment.get(2) + assignment.get(3));
+            quizAverage = (value/4.0);
+        }
+        
+        public double getAssignAverageDrop ()
+        {
+            return assignmentAverage;
         }
      
     
 }
-}
-    
+

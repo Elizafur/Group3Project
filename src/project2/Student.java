@@ -16,48 +16,86 @@ public class Student {
 	ArrayList<Double> assignmentList = new ArrayList<Double>();
 	ArrayList<Double> quizList = new ArrayList<Double>();
 	
+        ///////////////////////////////////////////////Setters///////////////////////////////////////////////////////////
+        
+        /**
+         * Sets the name of the student
+         * @param sName 
+         */
 	public void setName(String[] sName)
 	{
 		name = sName;
 	}
 	
+        /**
+         * Sets the quiz grades (5)
+         * @param qGrade 
+         */
 	public void setQuiz(double[] qGrade)
 	{
 		quiz = qGrade;
 	}
-	
+        
+	/**
+         * Sets the projects grade
+         * @param proj 
+         */
 	public void setProject(double proj)
 	{
 		project = proj;
 	}
 	
+        /**
+         * Sets the attendance grade
+         * @param attend 
+         */
 	public void setAttendance(double attend)
 	{
 		attendance = attend;
 	}
 	
+        /**
+         * Sets the assignment grades (5)
+         * @param aGrade 
+         */
 	public void setAssignment(double[] aGrade)
 	{
 		assignment = aGrade;
 	}
 	
+        /**
+         * Sets the exam grades (2)
+         * @param eGrade 
+         */
 	public void setExam(double[] eGrade)
 	{
 		exam = eGrade;
 	}
 	
+        /**
+         * Sets the quiz average
+         * @param qAvg 
+         */
 	public void setQuizAverage(double qAvg)
 	{
 		quizAverage = qAvg;
 	}
 	
+        /**
+         * Sets the assignment average
+         * @param aAvg 
+         */
 	public void setAssignmentAverage(double aAvg)
 	{
 		assignmentAverage = aAvg;
 	}
 	
-	// Start of getters
+	/////////////////////////////////////////////Getters////////////////////////////////////////////////////////////
 	
+        /**
+         * Gets the quiz grades
+         * @return quizList
+         */
 	public ArrayList<Double> getQuiz()
 	{
 		for(int i = 0; i < quiz.length; i++)
@@ -67,6 +105,11 @@ public class Student {
 		return quizList;
 	}
 	
+        
+        /**
+         * Gets the assignments grades
+         * @return assignmentList
+         */
 	public ArrayList<Double> getAssignment()
 	{
 		for(int i = 0; i < assignment.length; i++)
@@ -76,6 +119,10 @@ public class Student {
 		return assignmentList;
 	}
         
+        /**
+         * Gets the exam grades
+         * @return examList
+         */
         public ArrayList<Double> getExam()  {
             ArrayList<Double> examList = new ArrayList<Double>();
             for (int i = 0; i < exam.length; ++i)   {
@@ -85,30 +132,52 @@ public class Student {
             return examList;
         }
 	
+        /**
+         * Gets the assignment average
+         * @return assignmentAverage
+         */
 	public double getAssignmentAverage()
 	{
 		return assignmentAverage;
 	}
 	
+        /**
+         * Gets the quiz average
+         * @return quizAverage
+         */
 	public double getQuizAverage()
 	{
 		return quizAverage;
 	}
 	
+        /**
+         * Gets the student name
+         * @return name
+         */
 	public String[] getName()
 	{
                 return name;
-		//return (name[0] + " " + name[1]);
 	}
         
+        /**
+         * Gets the project grade
+         * @return project
+         */
         public double getProject()  {
             return project;
         }
         
+        /**
+         * Gets the attendance grade
+         * @return attendance
+         */
         public double getAttendance()   {
             return attendance;
         }
 	
+        /**
+         * Removes the lowest quiz grade
+         */
 	public void dropLowestQuiz() 
 	{
 		double lowest = quizList.get(0);
@@ -124,6 +193,9 @@ public class Student {
 		quizList.remove(lowestPosition);
 	}
 	
+        /**
+         * Removes the lowest assignment grade
+         */
 	public void dropLowestAssignment()
 	{
 		double lowest = assignmentList.get(0);
@@ -140,6 +212,9 @@ public class Student {
 		assignmentList.remove(lowestPosition);
 	}	
 		
+        /**
+         * Prints the student info for testing
+         */
 	public void print()
 	{
 		System.out.println(name[0] + " " + name[1]);
