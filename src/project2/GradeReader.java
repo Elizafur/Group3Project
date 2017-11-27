@@ -1,4 +1,5 @@
-package take2;
+
+package project2;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class GradeReader {
 		ArrayList<Student> studentAL = new ArrayList<Student>(); //Array list to hold your student objects.
 		
 		try {
-			File inputFile = new File("grades.txt");
+			File inputFile = new File("C:\\Users\\chloe\\Desktop\\StudentRoster2.txt");
 	
 			Scanner in = new Scanner(inputFile); 
 	
@@ -52,7 +53,7 @@ public class GradeReader {
 			    	studentAL.get(studentAL.size()-1).setExam(examGrade);
 			    	studentAL.get(studentAL.size()-1).setAttendance(attendanceGrade);
 			    	studentAL.get(studentAL.size()-1).setProject(projectGrade);
-			    	//studentAL.get(studentAL.size()-1).print();
+			    	studentAL.get(studentAL.size()-1).print();
 			    }
 			    count++;
 			}
@@ -65,5 +66,6 @@ public class GradeReader {
 					}
 		return studentAL;
 		
-	}	
+	}
 }
+
