@@ -21,7 +21,7 @@ public class Test {
                 //m.getGrades();
             
                 GradesReport g = new GradesReport();
-                //g.reportGradesNoDrop();
+                g.PrintDetails();
             
 //                Student s = new Student();
 //                s.print();
