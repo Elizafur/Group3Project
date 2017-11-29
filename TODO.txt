@@ -1,0 +1,10 @@
+TODO:
+Make grading schema work for letter grade
+Fix final grade calculations
+Incorporate dropped grades into calculations
+Fix searching by final grade number
+Add ability to print final report to a txt file:
+	o	Option 1: Sorted by last name alphabetically descending order.
+	o	Option 2: Sorted by final grade descending order.
+
+Clean up class files and consolidate their functions into appropriate classes
