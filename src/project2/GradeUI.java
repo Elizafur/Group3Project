@@ -13,28 +13,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.Box;
 
 import javax.swing.BoxLayout;
@@ -44,22 +23,16 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
-import javax.swing.SortOrder;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.TableRowSorter;
-import javax.swing.RowSorter;
 import javax.swing.table.TableModel;
 
 public class GradeUI {
@@ -281,35 +254,5 @@ public class GradeUI {
             
             
         }
-        
-	public void tableSortColumn(int col)	{
-            List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
-            sortKeys.add(new RowSorter.SortKey(col, SortOrder.ASCENDING));
-            sorter.setSortKeys(sortKeys);
-    	
-    	
-            //Note since the default Java RowSorter decides to sort blank rows as well as filled ones.
-            //The array needs to be reversed so that blank rows will not show up first.
-            //reverseTableArray();
-    	
-	}
-	
-	public void reverseTableArray()	{
-		Object[][] o = new Object[tableModel.rowLength][4];
-		for (int i = 0; i < tableModel.rowLength; ++i)	{
-			o[i][0] = tableModel.getValueAt(i, 0);
-			o[i][1] = tableModel.getValueAt(i, 1);
-			o[i][2] = tableModel.getValueAt(i, 2);
-			o[i][3] = tableModel.getValueAt(i, 3);
-		}
-		
-		for (int i = 0; i < tableModel.rowLength / 2; ++i)	{
-			for (int j = 0; j < 4; ++j)	{
-				Object temp = tableModel.getValueAt(i, j);
-				tableModel.setValueAt(o[tableModel.rowLength - i - 1][j], i, j);
-				tableModel.setValueAt(temp, tableModel.rowLength - i - 1, j);
-			}
-		}
-		
-	}	
+
 }
