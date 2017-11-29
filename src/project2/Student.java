@@ -12,7 +12,7 @@ public class Student {
 	double[] quiz = new double[5];
 	double[] assignment = new double[5];
 	double[] exam = new double[2];
-	double project, attendance, quizAverage, assignmentAverage;
+	double project, attendance;
 	ArrayList<Double> assignmentList = new ArrayList<Double>();
 	ArrayList<Double> quizList = new ArrayList<Double>();
 	
@@ -72,23 +72,6 @@ public class Student {
 		exam = eGrade;
 	}
 	
-        /**
-         * Sets the quiz average
-         * @param qAvg 
-         */
-	public void setQuizAverage(double qAvg)
-	{
-		quizAverage = qAvg;
-	}
-	
-        /**
-         * Sets the assignment average
-         * @param aAvg 
-         */
-	public void setAssignmentAverage(double aAvg)
-	{
-		assignmentAverage = aAvg;
-	}
 	
 	/////////////////////////////////////////////Getters////////////////////////////////////////////////////////////
 	
@@ -131,24 +114,6 @@ public class Student {
             
             return examList;
         }
-	
-        /**
-         * Gets the assignment average
-         * @return assignmentAverage
-         */
-	public double getAssignmentAverage()
-	{
-		return assignmentAverage;
-	}
-	
-        /**
-         * Gets the quiz average
-         * @return quizAverage
-         */
-	public double getQuizAverage()
-	{
-		return quizAverage;
-	}
 	
         /**
          * Gets the student name

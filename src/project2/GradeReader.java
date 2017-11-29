@@ -14,7 +14,7 @@ public class GradeReader {
 		ArrayList<Student> studentAL = new ArrayList<Student>(); //Array list to hold your student objects.
 		
 		try {
-			File inputFile = new File("C:\\Users\\chloe\\Desktop\\StudentRoster2.txt");
+			File inputFile = new File(System.getProperty("user.dir") + "\\StudentRoster2.txt");
 	
 			Scanner in = new Scanner(inputFile); 
 	
