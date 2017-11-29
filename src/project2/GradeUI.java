@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package project2;
 
-/**
- *
- * @author EliF
- */
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -35,6 +27,12 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableModel;
 
+
+/**
+ * GradeUI is the interface for displaying student grade details
+ * @author Group3
+ */
+
 public class GradeUI {
     private JPanel mainPanel;
     private JFrame frame;
@@ -56,6 +54,9 @@ public class GradeUI {
 
     final String[] searchSelectionTerms = {"Name", "Grade"};
 
+    /**
+     * Constructs a GradeUI
+     */
     public GradeUI()	{
         setUpUI();
         frame.setLocation(300, 25);
@@ -63,6 +64,9 @@ public class GradeUI {
 
     }
 
+    /**
+     * Sets up UI
+     */
     private void setUpUI()  {
         frame = new JFrame("Grade Reporter");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -202,6 +206,8 @@ public class GradeUI {
         });*/
     }
 
+    ////////////////////////////////////////// Beginning of main method//////////////////////////////////////////////////
+    
     public static void main(String[] args)	{
             GradeUI p = new GradeUI();
     }

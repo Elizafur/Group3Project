@@ -1,11 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package project2;
 
 import java.util.ArrayList;
+
+/**
+ * A student can have many grades.
+ * @author Group 3
+ */
 
 public class Student {
 	String[] name = new String[2];
@@ -20,7 +21,7 @@ public class Student {
         
         /**
          * Sets the name of the student
-         * @param sName 
+         * @param sName the student name
          */
 	public void setName(String[] sName)
 	{
@@ -29,7 +30,7 @@ public class Student {
 	
         /**
          * Sets the quiz grades (5)
-         * @param qGrade 
+         * @param qGrade the quiz grades
          */
 	public void setQuiz(double[] qGrade)
 	{
@@ -38,7 +39,7 @@ public class Student {
         
 	/**
          * Sets the projects grade
-         * @param proj 
+         * @param proj the project grade
          */
 	public void setProject(double proj)
 	{
@@ -47,7 +48,7 @@ public class Student {
 	
         /**
          * Sets the attendance grade
-         * @param attend 
+         * @param attend the attendance grade
          */
 	public void setAttendance(double attend)
 	{
@@ -56,7 +57,7 @@ public class Student {
 	
         /**
          * Sets the assignment grades (5)
-         * @param aGrade 
+         * @param aGrade the assignment grades
          */
 	public void setAssignment(double[] aGrade)
 	{
@@ -65,7 +66,7 @@ public class Student {
 	
         /**
          * Sets the exam grades (2)
-         * @param eGrade 
+         * @param eGrade the exam grades
          */
 	public void setExam(double[] eGrade)
 	{
@@ -77,7 +78,7 @@ public class Student {
 	
         /**
          * Gets the quiz grades
-         * @return quizList
+         * @return quizList the array list of quiz grades
          */
 	public ArrayList<Double> getQuiz()
 	{
@@ -91,7 +92,7 @@ public class Student {
         
         /**
          * Gets the assignments grades
-         * @return assignmentList
+         * @return assignmentList the array list of assignment grades
          */
 	public ArrayList<Double> getAssignment()
 	{
@@ -104,7 +105,7 @@ public class Student {
         
         /**
          * Gets the exam grades
-         * @return examList
+         * @return examList the array list of exam grades
          */
         public ArrayList<Double> getExam()  {
             ArrayList<Double> examList = new ArrayList<Double>();
@@ -117,7 +118,7 @@ public class Student {
 	
         /**
          * Gets the student name
-         * @return name
+         * @return name the name of the student
          */
 	public String[] getName()
 	{
@@ -126,7 +127,7 @@ public class Student {
         
         /**
          * Gets the project grade
-         * @return project
+         * @return project the project grade
          */
         public double getProject()  {
             return project;
@@ -134,12 +135,14 @@ public class Student {
         
         /**
          * Gets the attendance grade
-         * @return attendance
+         * @return attendance the attendance grade
          */
         public double getAttendance()   {
             return attendance;
         }
 	
+        ////////////////////////////////OTHER METHODS////////////////////////////////////////////////////////////////////////
+        
         /**
          * Removes the lowest quiz grade
          */
@@ -178,7 +181,7 @@ public class Student {
 	}	
 		
         /**
-         * Prints the student info for testing
+         * Prints the student info for testing purposes
          */
 	public void print()
 	{

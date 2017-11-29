@@ -4,11 +4,20 @@ package project2;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Calculations makes various calculations with student grades.
+ * @author Group3
+ */
 public class Calculations {
 	
 	ArrayList<Double> q, a;
 	double avg;
 	double sum;
+        
+        /**
+         * Gets the average grade of the students assignments and quizzes
+         * @return studentList and array list of students 
+         */
 	public ArrayList<Student> getAverage()
 	{
 		Scanner dropIn = new Scanner(System.in);

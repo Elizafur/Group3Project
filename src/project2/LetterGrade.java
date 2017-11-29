@@ -1,15 +1,19 @@
-/*
- * This class determines the letter grade.
- * There are three grading schemas.
- */
+
 package project2;
 
+/**
+ * Letter grade is the grade of the student based on the number grade and schema
+ * @author group3
+ */
 public class LetterGrade {
             
 /////////////////////////////////////////////////////////////Methods///////////////////////////////////////////////////////////
+    
     /**
-     * Sets the grading to schema 1
-     * @param score 
+     * Determines the letter grade of the student based on the schema
+     * @param s the schema (1, 2, or 3)
+     * @param score the score of student
+     * @return grade the letter grade
      */
     public static String getLetterGradeForSchema (Schema s, double score)
     {

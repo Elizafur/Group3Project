@@ -6,9 +6,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
-// Class to create students and assign grades to each individual student based on test file.
+/**
+ * A Grade Reader creates students and assign grades to each individual student based on text file.
+ * @author Group 3
+ */
+
 public class GradeReader {
 	// Method that creates and returns an arraylist of students
+    /**
+     * Creates an array list of student objects by reading from a text file
+     * @return studentAL an array list of student objects
+     */
 	public ArrayList<Student> getGrades()
 	{	
 		ArrayList<Student> studentAL = new ArrayList<Student>(); //Array list to hold your student objects.
