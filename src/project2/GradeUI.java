@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.Box;
 
 import javax.swing.BoxLayout;
@@ -52,7 +53,7 @@ public class GradeUI {
 
     JButton exportGradesButton;
 
-    final String[] searchSelectionTerms = {"Name", "Grade"};
+    final String[] searchSelectionTerms = {"Name", "Grade Number", "Grade Letter"};
 
     /**
      * Constructs a GradeUI
@@ -139,39 +140,42 @@ public class GradeUI {
 
         // Listen for changes in the text
         searchBar.getDocument().addDocumentListener(new DocumentListener() {
-          public void changedUpdate(DocumentEvent e) {
-                  filter();
-          }
-          public void removeUpdate(DocumentEvent e) {
-                  filter();
-          }
-          public void insertUpdate(DocumentEvent e) {
-                  filter();
-          }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                    filter();
+            }
 
-          public void filter() {
-                  String text = searchBar.getText();
-                  if (text.trim().length() == 0) {
-                        sorter.setRowFilter(null);
-                  } else {
-                        int selected = searchSelection.getSelectedIndex();
-                        if (selected == 0)  {
-                            sorter.setRowFilter(RowFilter.regexFilter("(?i)^" + text, 0));
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                    filter();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                    filter();
+            }
+
+            public void filter() {
+                    String text = searchBar.getText();
+                    if (text.trim().length() == 0) {
+                          sorter.setRowFilter(null);
+                    } else {
+                          int selected = searchSelection.getSelectedIndex();
+                          switch (selected) {
+                              case 0:
+                                  sorter.setRowFilter(RowFilter.regexFilter("(?i)^" + text, 0));
+                                  break;
+                              case 1:
+                                  sorter.setRowFilter(RowFilter.regexFilter("(?i)^" + text, 17));
+                                  break;
+                              case 2:
+                                  sorter.setRowFilter(RowFilter.regexFilter("(?i)^" + text, 18));
+                                  break;
                         }
-                        else    {
-                            /*List<RowFilter<Object,Object>> rfs = 
-                                new ArrayList<RowFilter<Object,Object>>(2);
-                            rfs.add(RowFilter.regexFilter(text, 17));
-                            rfs.add(RowFilter.regexFilter(text, 18));
-                            RowFilter<Object,Object> af = RowFilter.andFilter(rfs);*/
 
-                            //TODO, doesn't work for number grade.
-                            sorter.setRowFilter(RowFilter.regexFilter("(?i)^" + text, 17));
-                            sorter.setRowFilter(RowFilter.regexFilter("(?i)^" + text, 18));
-                        }
-
-                  }
-          }
+                    }
+            }
         });
 
 
