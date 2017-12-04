@@ -1,5 +1,4 @@
 TODO:
-Fix searching by final grade number
 Add ability to print final report to a txt file:
 	o	Option 1: Sorted by last name alphabetically descending order.
 	o	Option 2: Sorted by final grade descending order.

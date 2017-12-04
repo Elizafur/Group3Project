@@ -8,8 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.Box;
 
 import javax.swing.BoxLayout;
@@ -18,6 +21,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -212,6 +216,52 @@ public class GradeUI {
         exportGradesButton.setPreferredSize(new Dimension(100,50));
         buttonPanel.add(exportGradesButton, c);
 
+        exportGradesButton.addActionListener(new ActionListener() {   
+            @Override
+            public void actionPerformed(ActionEvent e)  {
+                File outputFile = new File(System.getProperty("user.dir") + "\\GradeReport.txt");
+                BufferedWriter bw = null;
+                try {
+                    if (!outputFile.exists()) {
+                        outputFile.createNewFile();
+                    }
+                    
+                    FileWriter fw = new FileWriter(outputFile);
+                    bw = new BufferedWriter(fw);
+                    
+                    String s = "GRADES:" + System.lineSeparator() + System.lineSeparator();
+                    for (int row = 0; row < table.getRowCount(); ++row)   {
+                        //we have 19 columns so we go up until 19.
+                        for (int col = 0; col < 19; ++col)  {
+                            s += table.getModel().getValueAt(row, col) + " ";
+                        }
+                        s += System.lineSeparator();
+                        
+                    }
+                    
+                    bw.write(s);
+                    
+                    JOptionPane.showMessageDialog(frame, "Grades written to file at location:" + System.lineSeparator() + System.getProperty("user.dir") + "\\GradeReport.txt");
+                    
+                    
+                }
+                catch (IOException Iex)   {
+                    Iex.printStackTrace();
+                }
+                finally {
+                    try {
+                        if (bw != null) {
+                            bw.close();
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Error in closing the BufferedWriter: " + ex);
+                    }
+                }
+                
+                
+            };
+        });
+        
         JPanel parentPanel = new JPanel();
         parentPanel.add(buttonPanel, BorderLayout.EAST);
 
