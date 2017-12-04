@@ -1,14 +1,16 @@
-
 package project2;
 
 import java.util.ArrayList;
 
 /**
- * A grade calculator determines the student grades.
- * It can be changed by the types of grades to be included in the final grade.
- * @author Group 3
+ * @author EliF
+ * Class used to contain methods used to calculate grade values based on schemas and whether or not
+ * the user chooses to drop the lowest grade.
  */
 public class GradeCalculator {
+    /**
+     * Assignment weight values
+     */
     private static final double QUIZ_PERCENT = .2;
     private static final double ASSIGN_PERCENT = .2;
     private static final double PROJ_PERCENT = .1;
@@ -16,65 +18,93 @@ public class GradeCalculator {
     private static final double ATT_PERCENT = .1;
 
     /**
-     * Calculates the average quiz grades
-     * @param s the students whose grade is to be calculated
-     * @return avg the average quiz grade
+<<<<<<< HEAD
+     * 
+     * @param s The student who's quiz average will be calculated.
+     * @param dropLowest Whether to drop the lowest quiz and assignment from the students grade list.
+     * @return Returns a double representation of a student's average quiz grade.
      */
-    public static double calculateQuizAverage(Student s)    {
+    public static double calculateQuizAverage(Student s, boolean dropLowest)    {
         ArrayList<Double> quizzes = s.getQuiz();
-        double avg = 0;
+        double pointsRecieved = 0;
+        
+        int lowest = getLowestValueIndex(quizzes);
+        if (dropLowest) {
+            quizzes.remove(lowest);
+        }
         
         for (int i = 0; i < quizzes.size(); ++i) {
-            avg += quizzes.get(i);
+            pointsRecieved += quizzes.get(i);
             
         }
-        
-        return avg / quizzes.size();
+            
+             //Points got    over   points possible
+        return pointsRecieved / (quizzes.size() * 100);
     }
+    
     /**
-     * Calculates the average assignment grades
-     * @param s the students whose grade is to be calculated
-     * @return avg the average assignment grade
+     * 
+     * @param s The student who's assignment average will be calculated.
+     * @param dropLowest Whether to drop the lowest quiz and assignment from the students grade list.
+     * @return Returns a double representation of a student's average assignment grade.
      */
-    public static double calculateAssignmentAverage(Student s)  {
+    public static double calculateAssignmentAverage(Student s, boolean dropLowest)  {
         ArrayList<Double> assignments = s.getAssignment();
-        double avg = 0;
+        double pointsRecieved = 0;
+        
+        int lowest = getLowestValueIndex(assignments);
+        if (dropLowest) {
+            assignments.remove(lowest);
+        }
         
         for (int i = 0; i < assignments.size(); ++i) {
-            avg += assignments.get(i);
+            pointsRecieved += assignments.get(i);
             
         }
         
-        return avg / assignments.size();
+        return pointsRecieved / (assignments.size() * 100);
     }
     
     /**
-      * Calculates the final grades
-     * @param s the students whose grade is to be calculated
-     * @return _____________ the final grade of the student
+     * @param s The Student who's final grade will be calculated.
+     * @param dropLowest Whether to drop the lowest quiz and assignment from the students grade list.
+     * @return Returns a double representation of a student's final number grade.
      */
-    public static double calculateFinalGrade(Student s) {
+    public static double calculateFinalGrade(Student s, boolean dropLowest) { 
+        double quizPoints = calculateQuizAverage(s, dropLowest) * QUIZ_PERCENT;
+        double assignPoints = calculateAssignmentAverage(s, dropLowest) * ASSIGN_PERCENT;
         
-        //TODO doesn't calculator properly
-        //Also add drop ability
-        double quizPoints = calculateQuizAverage(s) * QUIZ_PERCENT;
-        double assignPoints = calculateAssignmentAverage(s) * ASSIGN_PERCENT;
-        double projPoints = s.getProject() * PROJ_PERCENT;
-        double examPoints = ((s.getExam().get(0) + s.getExam().get(1)) / 2) * EXAM_PERCENT;
-        double attPoints = s.getAttendance() * ATT_PERCENT;
-        return (quizPoints + assignPoints + projPoints + examPoints + attPoints + attPoints);
+        double projPoints = (s.getProject() / 100)* PROJ_PERCENT;
+        double examPoints = ((s.getExam().get(0) + s.getExam().get(1)) / 200) * EXAM_PERCENT;
+        double attPoints = (s.getAttendance() / 100) * ATT_PERCENT;
+        return (quizPoints + assignPoints + projPoints + examPoints + attPoints) * 100;
     }
     
     /**
-     * Determines the letter grade of the student
-     * @param grade the number grade of the student
-     * @param s the grading schema
-     * @return ___________ the letter grade of the student based on the schema
+     * 
+     * @param grade The double representation of a student's final number grade.
+     * @param s The grade schema to be used: either ONE, TWO, or THREE.
+     * @return Returns a string representation of the student's number grade based on the Schema provided.
      */
     public static String getLetterGrade(double grade, Schema s)  {
-        //TODO Placeholder
-        return "B";
+        return LetterGrade.getLetterGradeForSchema(s, grade);      
+    }
+    
+    /**
+     * 
+     * @param a An array with which to return the lowest grade in the array.
+     * @return The index of the lowest grade within array a.
+     */
+    private static int getLowestValueIndex(ArrayList<Double> a)   {
+        int lowestIndex = 0;
         
+        for (int i = 0; i < a.size() - 1; ++i)  {
+            if (a.get(i+1) < a.get(lowestIndex))    {
+                lowestIndex = i+1;
+            }
+        }
+        
+        return lowestIndex;
     }
     
 }

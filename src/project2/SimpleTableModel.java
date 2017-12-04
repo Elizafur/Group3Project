@@ -2,45 +2,41 @@ package project2;
 
 import javax.swing.table.AbstractTableModel;
 
+/**
+ * 
+ * @author EliF
+ * A table model used to handle the column and row data for the JTable used in GradeUI
+ */
 public class SimpleTableModel extends AbstractTableModel {
-	public int rowLength = 0;
-	
-	public final String[] columnNames = {
-                "Name",
-                "QZ01",
-	        "QZ02",
-	        "QZ03",
-	        "QZ04",
-                "QZ05",
-                "T-Quiz",
-                "AS01",
-                "AS02",
-                "AS03",
-                "AS04",
-                "AS05",
-                "T-ASS",
-                "Exam01",
-                "Exam02",
-                "Attend",
-                "Project",
-                "Grade",
-                "Letter"
-	  	};
+    public int rowLength = 0;
+    public final String[] columnNames = {
+        "Name",
+        "QZ01",
+        "QZ02",
+        "QZ03",
+        "QZ04",
+        "QZ05",
+        "T-Quiz",
+        "AS01",
+        "AS02",
+        "AS03",
+        "AS04",
+        "AS05",
+        "T-ASS",
+        "Exam01",
+        "Exam02",
+        "Attend",
+        "Project",
+        "Grade",
+        "Letter"
+    };
+    
     private final Object[][] rowData;
 	
     public SimpleTableModel(int rowLength)	{
         this.rowLength = rowLength;
         rowData = new Object[rowLength][columnNames.length];
-    	for (int i = 0; i < rowLength; ++i)	{
-    		rowData[i][0] = "";
-    		fireTableCellUpdated(i, 0);
-    		rowData[i][1] = "";
-    		fireTableCellUpdated(i, 1);
-    		rowData[i][2] = "";
-    		fireTableCellUpdated(i, 2);
-    		rowData[i][3] = "";
-    		fireTableCellUpdated(i, 3);
-    	}
+
     }
     
     @Override

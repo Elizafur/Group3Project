@@ -1,9 +1,9 @@
-
 package project2;
 
 /**
- * Schema determines the grade of the student.
- * @author Group3
+ *
+ * @author EliF
+ * An enumeration to represent three possible Scheme types to calculate our letter grade based off of.
  */
 public enum Schema {
     ONE,

@@ -1,11 +1,10 @@
-
 package project2;
 
 import java.util.ArrayList;
 
 /**
- * A student can have many grades.
- * @author Group 3
+ * Class to represent a student
+ * Contains name and all grade data
  */
 
 public class Student {
@@ -14,8 +13,6 @@ public class Student {
 	double[] assignment = new double[5];
 	double[] exam = new double[2];
 	double project, attendance;
-	ArrayList<Double> assignmentList = new ArrayList<Double>();
-	ArrayList<Double> quizList = new ArrayList<Double>();
 	
         ///////////////////////////////////////////////Setters///////////////////////////////////////////////////////////
         
@@ -82,9 +79,10 @@ public class Student {
          */
 	public ArrayList<Double> getQuiz()
 	{
+            	ArrayList<Double> quizList = new ArrayList<Double>();
 		for(int i = 0; i < quiz.length; i++)
 		{
-			quizList.add(quiz[i]);
+                    quizList.add(quiz[i]);
 		}
 		return quizList;
 	}
@@ -96,9 +94,10 @@ public class Student {
          */
 	public ArrayList<Double> getAssignment()
 	{
+            	ArrayList<Double> assignmentList = new ArrayList<Double>();
 		for(int i = 0; i < assignment.length; i++)
 		{
-			assignmentList.add(assignment[i]);
+                    assignmentList.add(assignment[i]);
 		}
 		return assignmentList;
 	}
@@ -140,68 +139,4 @@ public class Student {
         public double getAttendance()   {
             return attendance;
         }
-	
-        ////////////////////////////////OTHER METHODS////////////////////////////////////////////////////////////////////////
-        
-        /**
-         * Removes the lowest quiz grade
-         */
-	public void dropLowestQuiz() 
-	{
-		double lowest = quizList.get(0);
-		int lowestPosition = 0;
-		for(int i = 0; i < quizList.size(); i++)
-		{
-			if(quizList.get(i) < lowest)
-			{
-				lowest = quizList.get(i);
-				lowestPosition = i;
-			}
-		}
-		quizList.remove(lowestPosition);
-	}
-	
-        /**
-         * Removes the lowest assignment grade
-         */
-	public void dropLowestAssignment()
-	{
-		double lowest = assignmentList.get(0);
-		int lowestPosition = 0;
-		
-		for(int i = 0; i < quizList.size(); i++)
-		{
-			if(assignmentList.get(i) < lowest)
-			{
-				lowest = assignmentList.get(i);
-				lowestPosition = i;
-			}
-		}
-		assignmentList.remove(lowestPosition);
-	}	
-		
-        /**
-         * Prints the student info for testing purposes
-         */
-	public void print()
-	{
-		System.out.println(name[0] + " " + name[1]);
-		for(int i = 0; i <= 4; i++)
-		{
-			System.out.print(quiz[i] + " ");
-		}
-		System.out.println(" ");
-		for(int i = 0; i <= 4; i++)
-		{
-			System.out.print(assignment[i] + " ");
-		}
-		System.out.println(" ");
-		for(int i = 0; i <= 1; i++)
-		{
-			System.out.print(exam[i] + " ");
-		}
-		System.out.println(" ");
-		System.out.println(attendance);
-		System.out.println(project);
-	}
 }

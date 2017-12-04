@@ -61,7 +61,6 @@ public class GradeReader {
 			    	studentAL.get(studentAL.size()-1).setExam(examGrade);
 			    	studentAL.get(studentAL.size()-1).setAttendance(attendanceGrade);
 			    	studentAL.get(studentAL.size()-1).setProject(projectGrade);
-			    	studentAL.get(studentAL.size()-1).print();
 			    }
 			    count++;
 			}

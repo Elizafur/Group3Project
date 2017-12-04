@@ -1,10 +1,13 @@
-
 package project2;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import javax.swing.Box;
 
@@ -12,7 +15,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -27,12 +29,10 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableModel;
 
-
 /**
- * GradeUI is the interface for displaying student grade details
- * @author Group3
+ * @author EliF
+ * Class to represent the UI for our program.
  */
-
 public class GradeUI {
     private JPanel mainPanel;
     private JFrame frame;
@@ -65,8 +65,8 @@ public class GradeUI {
     }
 
     /**
-     * Sets up UI
-     */
+        Will set up the creation of the UI elements and handle sizing and actionListeners for elements.
+    */
     private void setUpUI()  {
         frame = new JFrame("Grade Reporter");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -111,6 +111,14 @@ public class GradeUI {
         c.gridx = 6;
         optionPanel.add(schemaSelection, c);
 
+        schemaSelection.addActionListener (new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                recalculateGrades();
+            }
+        });
+        
+        
         c.gridx = 7;
         optionPanel.add(Box.createHorizontalStrut(30));
 
@@ -119,6 +127,14 @@ public class GradeUI {
         c.gridx = 8;
         optionPanel.add(dropLowestGrade, c);
 
+        dropLowestGrade.addItemListener (new ItemListener () {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                recalculateGrades();
+            }
+        });
+        
+        
         frame.getContentPane().add(optionPanel, BorderLayout.NORTH);
 
         // Listen for changes in the text
@@ -171,6 +187,9 @@ public class GradeUI {
         JScrollPane scrollPane = new JScrollPane(table);
         table.setFillsViewportHeight(true);	
 
+        //Set width of name slightly larger than all the other columns
+        table.getColumn(tableModel.getColumnName(0)).setPreferredWidth(150);
+
         mainPanel.add(scrollPane);		
 
         exportGradesButton = new JButton();
@@ -192,18 +211,7 @@ public class GradeUI {
         JPanel parentPanel = new JPanel();
         parentPanel.add(buttonPanel, BorderLayout.EAST);
 
-        frame.getContentPane().add(parentPanel, BorderLayout.SOUTH);	
-
-        /*table.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent me) {
-                JTable table =(JTable) me.getSource();
-                Point p = me.getPoint();
-                int row = table.rowAtPoint(p);
-                if (me.getClickCount() == 2 && row != -1) {
-                        //addNewContact();
-                }
-            }
-        });*/
+        frame.getContentPane().add(parentPanel, BorderLayout.SOUTH);	  
     }
 
     ////////////////////////////////////////// Beginning of main method//////////////////////////////////////////////////
@@ -212,6 +220,9 @@ public class GradeUI {
             GradeUI p = new GradeUI();
     }
 
+    /**
+     * Populates student values for the JTable.
+     */
     private void populateTableValues() {
 
         for (int i = 0; i < students.size(); ++i)   {
@@ -229,14 +240,14 @@ public class GradeUI {
                 tableModel.setValueAt(quiz.get(j), i, j+1);
             }
             //add Quiz avg 
-            tableModel.setValueAt(GradeCalculator.calculateQuizAverage(students.get(i)), i, 6);
+            tableModel.setValueAt(GradeCalculator.calculateQuizAverage(students.get(i), dropLowestGrade.isSelected()), i, 6);
 
             //adding assignments
             for (int j = 0, h = 7; j < assignment.size(); ++j, ++h)   {
                 tableModel.setValueAt(assignment.get(j), i, h);
             }
             //add assignment avg
-            tableModel.setValueAt(GradeCalculator.calculateAssignmentAverage(students.get(i)), i, 12);
+            tableModel.setValueAt(GradeCalculator.calculateAssignmentAverage(students.get(i), dropLowestGrade.isSelected()), i, 12);
 
             //adding exams
             for (int j = 0, h = 13; j < exam.size(); ++j, ++h)   {
@@ -248,11 +259,24 @@ public class GradeUI {
 
 
             //Setting number and letter grade
-            double finalGrade = GradeCalculator.calculateFinalGrade(students.get(i));
+            double finalGrade = GradeCalculator.calculateFinalGrade(students.get(i), dropLowestGrade.isSelected());
             String letterFinalGrade = GradeCalculator.getLetterGrade(finalGrade, (Schema)schemaSelection.getSelectedItem());
 
             tableModel.setValueAt(finalGrade, i, 17);
             tableModel.setValueAt(letterFinalGrade, i, 18);          
         }      
+    }
+    
+    /**
+     * Method used to recalculate student grades after the dropLowest checkbox or the schema selection has been changed
+     */
+    private void recalculateGrades()   {
+        for (int i = 0; i < students.size(); ++i)   {
+            double finalGrade = GradeCalculator.calculateFinalGrade(students.get(i), dropLowestGrade.isSelected());
+            String letterFinalGrade = GradeCalculator.getLetterGrade(finalGrade, (Schema)schemaSelection.getSelectedItem());
+
+            tableModel.setValueAt(finalGrade, i, 17);
+            tableModel.setValueAt(letterFinalGrade, i, 18);  
+        }
     }
 }
