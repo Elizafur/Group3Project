@@ -38,7 +38,7 @@ public class GradeCalculator {
             
         }
             
-             //Points got    over   points possible
+             //Points got over points possible
         return pointsRecieved / (quizzes.size() * 100);
     }
     
