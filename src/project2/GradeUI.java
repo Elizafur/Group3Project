@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.Box;
 
@@ -210,6 +211,8 @@ public class GradeUI {
      */
     private void populateTableValues() {
 
+        DecimalFormat format = new DecimalFormat("##.00");
+        
         for (int i = 0; i < students.size(); ++i)   {
 
             String name = students.get(i).getName()[0] + " " + students.get(i).getName()[1];
@@ -225,14 +228,14 @@ public class GradeUI {
                 tableModel.setValueAt(quiz.get(j), i, j+1);
             }
             //add Quiz avg 
-            tableModel.setValueAt(GradeCalculator.calculateQuizAverage(students.get(i), dropLowestGrade.isSelected()), i, 6);
+            tableModel.setValueAt(format.format(GradeCalculator.calculateQuizAverage(students.get(i), dropLowestGrade.isSelected()) * 100), i, 6);
 
             //adding assignments
             for (int j = 0, h = 7; j < assignment.size(); ++j, ++h)   {
                 tableModel.setValueAt(assignment.get(j), i, h);
             }
             //add assignment avg
-            tableModel.setValueAt(GradeCalculator.calculateAssignmentAverage(students.get(i), dropLowestGrade.isSelected()), i, 12);
+            tableModel.setValueAt(format.format(GradeCalculator.calculateAssignmentAverage(students.get(i), dropLowestGrade.isSelected()) * 100), i, 12);
 
             //adding exams
             for (int j = 0, h = 13; j < exam.size(); ++j, ++h)   {
