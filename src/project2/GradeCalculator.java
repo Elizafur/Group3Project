@@ -18,8 +18,6 @@ public class GradeCalculator {
     private static final double ATT_PERCENT = .1;
 
     /**
-<<<<<<< HEAD
-     * 
      * @param s The student who's quiz average will be calculated.
      * @param dropLowest Whether to drop the lowest quiz and assignment from the students grade list.
      * @return Returns a double representation of a student's average quiz grade.
