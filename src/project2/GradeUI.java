@@ -54,9 +54,7 @@ public class GradeUI {
     JComboBox schemaSelection;
     JPanel optionPanel;
     JComboBox searchSelection;
-
-    JButton exportGradesButton;
-
+    
     final String[] searchSelectionTerms = {"Name", "Grade Number", "Grade Letter"};
 
     /**
@@ -75,7 +73,7 @@ public class GradeUI {
     private void setUpUI()  {
         frame = new JFrame("Grade Reporter");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(1200, 308);
+        frame.setSize(1200, 258);
 
         frame.getContentPane().setLayout(new BorderLayout());
         mainPanel = new JPanel();
@@ -200,68 +198,8 @@ public class GradeUI {
 
         mainPanel.add(scrollPane);		
 
-        exportGradesButton = new JButton();
-        exportGradesButton.setText("<html><div style='text-align: center;'>Print Grades</html>");
-
         buttonPanel = new JPanel(new GridBagLayout());
-        c = new GridBagConstraints();
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 1.0;
-        c.gridx = 0;
-        c.gridy = 0;
-        buttonPanel.add(Box.createHorizontalStrut(1070));
-
-        c.gridx = 1;
-        exportGradesButton.setPreferredSize(new Dimension(100,50));
-        buttonPanel.add(exportGradesButton, c);
-
-        exportGradesButton.addActionListener(new ActionListener() {   
-            @Override
-            public void actionPerformed(ActionEvent e)  {
-                File outputFile = new File(System.getProperty("user.dir") + "\\GradeReport.txt");
-                BufferedWriter bw = null;
-                try {
-                    if (!outputFile.exists()) {
-                        outputFile.createNewFile();
-                    }
-                    
-                    FileWriter fw = new FileWriter(outputFile);
-                    bw = new BufferedWriter(fw);
-                    
-                    String s = "GRADES:" + System.lineSeparator() + System.lineSeparator();
-                    for (int row = 0; row < table.getRowCount(); ++row)   {
-                        //we have 19 columns so we go up until 19.
-                        for (int col = 0; col < 19; ++col)  {
-                            s += table.getModel().getValueAt(row, col) + " ";
-                        }
-                        s += System.lineSeparator();
-                        
-                    }
-                    
-                    bw.write(s);
-                    
-                    JOptionPane.showMessageDialog(frame, "Grades written to file at location:" + System.lineSeparator() + System.getProperty("user.dir") + "\\GradeReport.txt");
-                    
-                    
-                }
-                catch (IOException Iex)   {
-                    Iex.printStackTrace();
-                }
-                finally {
-                    try {
-                        if (bw != null) {
-                            bw.close();
-                        }
-                    } catch (Exception ex) {
-                        System.out.println("Error in closing the BufferedWriter: " + ex);
-                    }
-                }
-                
-                
-            };
-        });
-        
+    
         JPanel parentPanel = new JPanel();
         parentPanel.add(buttonPanel, BorderLayout.EAST);
 
